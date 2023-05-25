@@ -38,7 +38,7 @@ function displayforecast(response) {
         `
       <div class="col-2">
            <div class="weatherforecastdate">${formatDay(forecastDay.time)}</div>
-           <img src=${forecastDay.condition.icon_url} width=55>
+           <img src=${forecastDay.condition.icon_url} width="55" />
             <div class="weatherforecasttemp">
             <span class="weatherforecasttempmax"> ${Math.round(
               forecastDay.temperature.maximum
@@ -48,10 +48,10 @@ function displayforecast(response) {
             )}º </span>
             </div>
         </div>`;
-      forecastHTML = forecastHTML + `</div>`;
-      forecastElement.innerHTML = forecastHTML;
     }
   });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 function displayTemperature(response) {
@@ -95,29 +95,7 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
-function displayfahr(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  let fahrTemperature = (celsiusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrTemperature);
-  celsiusLink.classList.remove("active");
-  fahrenLink.classList.add("active");
-}
-function displaycelsius(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-  celsiusLink.classList.add("active");
-  fahrenLink.classList.remove("active");
-}
-let celsiusTemperature = null;
-
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-let fahrenLink = document.querySelector("#fahrLink");
-fahrenLink.addEventListener("click", displayfahr);
-
-let celsiusLink = document.querySelector("#celsiusLink");
-celsiusLink.addEventListener("click", displaycelsius);
 search("Zurich");
